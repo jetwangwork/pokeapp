@@ -34,28 +34,24 @@ fun DigimonImageView(
         Box(
             modifier = Modifier
                 .height(height)
-                .fillMaxWidth(),
-            contentAlignment = Alignment.Center
+                .fillMaxWidth()
         ) {
             AsyncImage(
                 model = imageUrl,
                 contentDescription = name,
                 modifier = Modifier
-                    .fillMaxHeight()
                     .padding(8.dp)
+                    .fillMaxHeight()
+                    .align(Alignment.Center)
             )
-            Box(
+
+            Text(
+                text = "ID: $id",
+                color = Color.White,
                 modifier = Modifier
-                    .height(height)
-                    .fillMaxWidth()
-                    .padding(end = 16.dp, bottom = 12.dp),
-                contentAlignment = Alignment.BottomEnd
-            ) {
-                Text(
-                    text = "ID: $id",
-                    color = Color.White
-                )
-            }
+                    .align(Alignment.BottomEnd)
+                    .padding(end = 16.dp, bottom = 12.dp)
+            )
         }
     }
 }

@@ -4,16 +4,19 @@ import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.example.pokeapp.api.response.DigimonDetailResponse
 import com.example.pokeapp.repository.MonsterRepository
+import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.StateFlow
 import kotlinx.coroutines.launch
+import javax.inject.Inject
 
 sealed class DigimonDetailIntent {
     data class InitDetailPage(val id: Int) : DigimonDetailIntent()
 }
 
-class DigimonDetailViewModal(
-    private val repository: MonsterRepository = MonsterRepository()
+@HiltViewModel
+class DigimonDetailViewModal @Inject constructor(
+    private val repository: MonsterRepository
 ) : ViewModel() {
 
     private val _digimonModel = MutableStateFlow<DigimonModel>(DigimonModel.getEmptyModel(false))

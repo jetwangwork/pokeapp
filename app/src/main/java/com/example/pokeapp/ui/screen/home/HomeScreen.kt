@@ -11,7 +11,7 @@ import androidx.compose.runtime.collectAsState
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.rememberCoroutineScope
 import androidx.compose.ui.Modifier
-import androidx.lifecycle.viewmodel.compose.viewModel
+import androidx.hilt.navigation.compose.hiltViewModel
 import androidx.navigation.NavHostController
 import com.example.pokeapp.BuildConfig
 import com.example.pokeapp.ui.view.ErrorView
@@ -25,7 +25,7 @@ import kotlinx.coroutines.launch
 
 @OptIn(ExperimentalMaterial3Api::class, ExperimentalFoundationApi::class)
 @Composable
-fun HomeScreen(navController: NavHostController, viewModel: HomeViewModel = viewModel()) {
+fun HomeScreen(navController: NavHostController, viewModel: HomeViewModel = hiltViewModel()) {
 
     val homeModel by viewModel.homeModel.collectAsState()
     val showType by viewModel.showType.collectAsState()

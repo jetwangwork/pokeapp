@@ -13,7 +13,7 @@ import androidx.compose.runtime.collectAsState
 import androidx.compose.runtime.getValue
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.unit.dp
-import androidx.lifecycle.viewmodel.compose.viewModel
+import androidx.hilt.navigation.compose.hiltViewModel
 import androidx.navigation.NavHostController
 import com.example.pokeapp.ui.screen.digimonDetail.view.*
 import com.example.pokeapp.ui.theme.PinkF
@@ -22,7 +22,7 @@ import com.example.pokeapp.ui.view.ErrorView
 import com.example.pokeapp.ui.view.LoadingView
 
 @Composable
-fun DigimonDetailScreen(navController: NavHostController, digimonId: Int, digimonName: String, viewModel: DigimonDetailViewModal = viewModel()) {
+fun DigimonDetailScreen(navController: NavHostController, digimonId: Int, digimonName: String, viewModel: DigimonDetailViewModal = hiltViewModel()) {
 
     val digimonModel by viewModel.digimonModel.collectAsState()
 

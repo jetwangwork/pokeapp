@@ -2,7 +2,9 @@ package com.example.pokeapp
 
 import android.app.Application
 import com.example.pokeapp.util.SharedPref
+import dagger.hilt.android.HiltAndroidApp
 
+@HiltAndroidApp
 class PokeApp : Application() {
     override fun onCreate() {
         super.onCreate()

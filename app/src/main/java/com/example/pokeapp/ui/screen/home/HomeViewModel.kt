@@ -9,9 +9,11 @@ import com.example.pokeapp.repository.MonsterRepository
 import com.example.pokeapp.util.SharedPref
 import com.example.pokeapp.util.SharedPrefKeys
 import com.example.pokeapp.util.Utils
+import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.StateFlow
 import kotlinx.coroutines.launch
+import javax.inject.Inject
 
 sealed class HomeIntent {
     object Reload : HomeIntent()
@@ -24,8 +26,9 @@ enum class ShowType {
     List
 }
 
-class HomeViewModel(
-    private val repository: MonsterRepository = MonsterRepository()
+@HiltViewModel
+class HomeViewModel @Inject constructor(
+    private val repository: MonsterRepository
 ) : ViewModel() {
 
     private val _homeModel = MutableStateFlow<HomeModel>(HomeModel.getEmptyModel(false))

@@ -1,25 +1,32 @@
 package com.example.pokeapp.repository
 
-import com.example.pokeapp.api.ApiManager
+import com.example.pokeapp.api.DigimonApiService
+import com.example.pokeapp.api.PokemonApiService
 import com.example.pokeapp.api.response.DigimonDetailResponse
 import com.example.pokeapp.api.response.DigimonListResponse
 import com.example.pokeapp.api.response.PokemonDetailResponse
 import com.example.pokeapp.api.response.PokemonListResponse
+import javax.inject.Inject
+import javax.inject.Singleton
 
-class MonsterRepository {
+@Singleton
+class MonsterRepository @Inject constructor(
+    private val pokemonApi: PokemonApiService,
+    private val digimonApi: DigimonApiService
+) {
     suspend fun getPokemons(offset: Int, limit: Int = 20): PokemonListResponse {
-        return ApiManager.pokemonApi.getPokemons(offset, limit)
+        return pokemonApi.getPokemons(offset, limit)
     }
 
     suspend fun getPokemonDetail(id: Int): PokemonDetailResponse {
-        return ApiManager.pokemonApi.getPokemonDetail(id)
+        return pokemonApi.getPokemonDetail(id)
     }
 
     suspend fun getDigimons(page: Int): DigimonListResponse {
-        return ApiManager.digimonApi.getDigimons(page)
+        return digimonApi.getDigimons(page)
     }
 
     suspend fun getDigimonDetail(id: Int): DigimonDetailResponse {
-        return ApiManager.digimonApi.getDigimonDetail(id)
+        return digimonApi.getDigimonDetail(id)
     }
-}
+}

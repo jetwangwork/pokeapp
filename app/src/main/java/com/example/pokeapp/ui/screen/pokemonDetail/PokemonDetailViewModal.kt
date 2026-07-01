@@ -8,16 +8,19 @@ import com.example.pokeapp.api.response.PokemonDetailResponse.Stat
 import com.example.pokeapp.api.response.PokemonDetailResponse.Type
 import com.example.pokeapp.repository.MonsterRepository
 import com.example.pokeapp.util.Utils
+import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.StateFlow
 import kotlinx.coroutines.launch
+import javax.inject.Inject
 
 sealed class PokemonDetailIntent {
     data class InitDetailPage(val id: Int) : PokemonDetailIntent()
 }
 
-class PokemonDetailViewModal(
-    private val repository: MonsterRepository = MonsterRepository()
+@HiltViewModel
+class PokemonDetailViewModal @Inject constructor(
+    private val repository: MonsterRepository
 ) : ViewModel() {
 
     private val _pokemonModel = MutableStateFlow<PokemonModel>(PokemonModel.getEmptyModel(false))
